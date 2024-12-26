@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
+using DG.Tweening;
 
 public class FactsManager : MonoBehaviour
 {
     public TextMeshProUGUI dogFactText;
+    [SerializeField] private GameObject _factsTextPanel;
+    RectTransform tabRectTransform;
 
     private void Start()
     {
+        tabRectTransform = _factsTextPanel.GetComponent<RectTransform>();
         StartCoroutine(GetRandomDogFact());
     }
 
@@ -43,6 +47,10 @@ public class FactsManager : MonoBehaviour
     public void NextFact()
     {
         StartCoroutine(GetRandomDogFact());
+        _factsTextPanel.transform.localScale = Vector3.zero;
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(_factsTextPanel.transform.DOScale(1, 0.5f));
+        sequence.Join(tabRectTransform.DORotate(new Vector3(0, 0, 360), 0.5f, RotateMode.FastBeyond360));
     }
 }
 
