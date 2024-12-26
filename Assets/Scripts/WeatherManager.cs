@@ -58,7 +58,7 @@ public class WeatherManager : MonoBehaviour
         if (weatherResponse != null && weatherResponse.properties.periods.Length > 0)
         {
             Period todayWeather = weatherResponse.properties.periods[0];
-            weatherText.text = $"Погода: {todayWeather.shortForecast}, Температура: {todayWeather.temperature}°F";
+            weatherText.text = $" Температура: {todayWeather.temperature}°F";
             Debug.Log($"Weather: {todayWeather.shortForecast}, Temperature: {todayWeather.temperature}°F");
         }
         else
