@@ -30,7 +30,16 @@ public class WeatherManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(GetWeatherData());
+        StartCoroutine(UpdateWeatherData());
+    }
+
+    private IEnumerator UpdateWeatherData()
+    {
+        while (true)
+        {
+            yield return StartCoroutine(GetWeatherData());
+            yield return new WaitForSeconds(5f);
+        }
     }
 
     private IEnumerator GetWeatherData()
@@ -58,8 +67,8 @@ public class WeatherManager : MonoBehaviour
         if (weatherResponse != null && weatherResponse.properties.periods.Length > 0)
         {
             Period todayWeather = weatherResponse.properties.periods[0];
-            weatherText.text = $" Температура: {todayWeather.temperature}°F";
-            Debug.Log($"Weather: {todayWeather.shortForecast}, Temperature: {todayWeather.temperature}°F");
+            weatherText.text = $"Сегодня {todayWeather.temperature}°F";
+            Debug.Log($"Temperature: {todayWeather.temperature}°F");
         }
         else
         {
