@@ -16,13 +16,13 @@ public class AppManager : MonoBehaviour
 	public void WeatherClick()
 	{
 		_isWeather = true;
-		tabRectTransform.DOAnchorPos(new Vector2(-300, -800), 0.5f);
+		tabRectTransform.DOAnchorPos(new Vector2(-300, -730), 0.5f);
 	}
 
 	public void FactsClikc()
 	{
 		_isWeather = false;
-		tabRectTransform.DOAnchorPos(new Vector2(300, -800), 0.5f);
+		tabRectTransform.DOAnchorPos(new Vector2(300, -730), 0.5f);
 	}
 
 	private void Update()
